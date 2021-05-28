@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./assets/images/Logo_of_Bukidnon_State_University.png">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/util.css">
+    <title>Admin | BUKSU E-learn</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card table">
+            <div class="header">
+                <span>Admin</span>
+                <button onclick="location.href='php/logout.inc.php';" class="logout-btn" type="button">Logout</button>
+            </div>
+            <div class="table-data">
+                <table>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>First Name</th>
+                        <th>Middle Name</th>
+                        <th>Last Name</th>
+                        <th>Phone</th>
+                        <th>Gender</th>
+                        <th>Course</th>
+                        <th>Year Level</th>
+                        <th>Role</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <!-- This will populated with datas -->
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <div class="actions">
+                                <div class="add action-icon">
+                                    <img src="./assets/icons/plus-solid.svg">
+                                </div>
+                                <div class="edit action-icon">
+                                    <img src="./assets/icons/edit-solid.svg">
+                                </div>
+                                <div class="delete action-icon">
+                                    <img src="./assets/icons/trash-alt-regular.svg">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="js/register.js"></script>
+</body>
+
+</html>
