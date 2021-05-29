@@ -1,7 +1,7 @@
 <?php
 
-function idExists($conn, $id, $email) {
-    $sql = "SELECT * FROM user WHERE student_id = ? OR email = ?;";
+function idExists($conn, $id) {
+    $sql = "SELECT * FROM user WHERE id = ?;";
     $stmt = mysqli_stmt_init($conn);
 
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -9,7 +9,7 @@ function idExists($conn, $id, $email) {
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "ss", $id, $email);
+    mysqli_stmt_bind_param($stmt, "s", $id);
     mysqli_stmt_execute($stmt);
 
     $resultData = mysqli_stmt_get_result($stmt);
@@ -23,8 +23,8 @@ function idExists($conn, $id, $email) {
     mysqli_stmt_close($stmt);
 }
 
-function createUser($conn, $studentId, $email, $password, $firstName, $middleName, $lastName, $phone, $gender, $course, $yearLevel) {
-    $sql = "INSERT INTO user (student_id, email, pass, first_name, middle_name, last_name, phone, gender, course_id, year_level) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+function createUser($conn, $studentId, $email, $password, $firstName, $middleName, $lastName, $phone, $gender, $course, $yearLevel, $role) {
+    $sql = "INSERT INTO user (id, email, password, first_name, middle_name, last_name, phone, gender, course_id, year_level, role) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
 
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -34,7 +34,7 @@ function createUser($conn, $studentId, $email, $password, $firstName, $middleNam
 
     $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
 
-    mysqli_stmt_bind_param($stmt, "ssssssssss", $studentId, $email, $hashedPwd, $firstName, $middleName, $lastName, $phone, $gender, $course, $yearLevel);
+    mysqli_stmt_bind_param($stmt, "sssssssssss", $studentId, $email, $hashedPwd, $firstName, $middleName, $lastName, $phone, $gender, $course, $yearLevel, $role);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../registration.php?signup=success");
@@ -44,7 +44,7 @@ function createUser($conn, $studentId, $email, $password, $firstName, $middleNam
 function getCourse($conn, $sessionId) {
     $sql = "SELECT course.course_id, course.course_name, college.college_id, college.college_name
             FROM user, college RIGHT JOIN course ON college.college_id = course.college_id
-            WHERE course.course_id = user.course_id AND user.student_id = ?";
+            WHERE course.course_id = user.course_id AND user.id = ?";
 
     $stmt = mysqli_stmt_init($conn);
 
@@ -67,28 +67,36 @@ function getCourse($conn, $sessionId) {
 }
 
 function loginUser($conn, $username, $password) {
-    $idExists = idExists($conn, $username, $username);
+    $idExists = idExists($conn, $username);
 
     if ($idExists === false) {
-        // header("location: ../login.php?error=doesntexists");
+        header("location: ../login.php?login=doesntexists");
         exit();
     }
 
-    $pwdHashed = $idExists["pass"];
+    $pwdHashed = $idExists["password"];
     $checkedPwd = password_verify($password, $pwdHashed);
 
     if ($checkedPwd === false) {
         header("location: ../login.php?login=fail");
         exit();
     } else if ($checkedPwd === true) {
-        session_start();
-        $_SESSION['student-id'] = $idExists["student_id"];
-        $_SESSION['email'] = $idExists["email"];
-        header("location: ../home.php");
-        exit();
+        if ($idExists["role"] === "student") {
+            session_start();
+            $_SESSION['id'] = $idExists["id"];
+            $_SESSION['email'] = $idExists["email"];
+            header("location: ../home.php");
+            exit();
+        } else {
+            session_start();
+            $_SESSION['id'] = $idExists["id"];
+            $_SESSION['email'] = $idExists["email"];
+            header("location: ../admin.html");
+            exit();
+        }
     }
 }
 
-function userData($conn, $sessionId, $sessionEmail) {
-    return idExists($conn, $sessionId, $sessionEmail);
+function userData($conn, $sessionId) {
+    return idExists($conn, $sessionId);
 }

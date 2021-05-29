@@ -98,6 +98,20 @@ select {
   font-family: 'Montserrat';
 }
 
+input[type='text']:focus,
+input[type='password']:focus,
+select:focus {
+  border: 2px var(--primary-color) solid;
+}
+
+#email:read-only {
+  background-color: #e3e3e3;
+}
+
+#email:hover {
+  cursor: default;
+}
+
 .error-container {
   display: flex;
   flex-direction: row;
@@ -199,23 +213,35 @@ select {
   background-color: #595f68;
 }
 
-.register-container {
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  align-items: flex-end;
-  padding: 20px 0;
-}
-
 .radio-gender {
   height: var(--box-height);
   font-weight: 500;
   gap: 1rem;
 }
 
+.register-container {
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.register-as-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.register-button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
 #register-button {
-  margin-top: 1rem;
-  width: 50%;
+  width: 100%;
   height: var(--box-height);
   background-color: #0062cd;
   color: #fff;

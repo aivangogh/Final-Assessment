@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', TRUE);
 session_start();
 
-if (isset($_SESSION["student-id"]) && isset($_SESSION["email"])) {
+if (isset($_SESSION["id"]) && isset($_SESSION["email"])) {
     header('location: home.php');
     exit();
 }
@@ -48,6 +48,10 @@ if (isset($_SESSION["student-id"]) && isset($_SESSION["email"])) {
 
                         if ($loginResponse == "stmtfail") {
                             echo "<div id='login-error'><p class='error-message'>Something went wrong, try again!</p></div>";
+                        }
+
+                        if ($loginResponse == "fail") {
+                            echo "<div id='login-error'><p class='error-message'>Login failed, Please try again.</p></div>";
                         }
                     }
                     ?>

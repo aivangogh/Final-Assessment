@@ -4,17 +4,19 @@ import {
 } from './colleges-courses.js';
 // import { postRequest } from './post-request.js';
 
-const studentId = document.getElementById('student-id');
+const id = document.getElementById('id');
 const firstName = document.getElementById('first-name');
 const middleName = document.getElementById('middle-name');
 const lastName = document.getElementById('last-name');
-const email = document.getElementById('university-email');
+const email = document.getElementById('email');
 const phone = document.getElementById('phone');
 const gender = document.getElementsByName('gender');
 const password = document.getElementById('password');
+const passwordName = document.getElementsByName('password');
 const college = document.getElementById('college');
 const course = document.getElementById('course');
 const yearLevel = document.getElementById('year-level');
+const role = document.getElementById('role');
 
 const registerForm = document.getElementById('registration-form');
 
@@ -43,6 +45,30 @@ function genderValue() {
     if (gender.checked) genderValue = gender.value;
   });
   return genderValue;
+}
+
+passwordName.oninput = () => {
+  console.log(email.getAttributeNames.value);
+};
+
+email.readonly = true;
+
+id.addEventListener('input', () => {
+  autoComplete(id);
+});
+
+id.addEventListener('blur', () => {
+  if (role.value === 'admin') {
+    email.value = `${id.value}@admin.buksu.edu.ph`;
+  } else {
+    email.value = `${id.value}@student.buksu.edu.ph`;
+  }
+
+  console.log(email.value);
+});
+
+function autoComplete(input) {
+  email.value = input.value;
 }
 
 // This function will population the options but if user select one of colleges,
@@ -79,6 +105,22 @@ yearLevelArray.forEach((year) => {
   optionYearLevel.appendChild(document.createTextNode(year.year));
   optionYearLevel.value = year.id;
   yearLevel.appendChild(optionYearLevel);
+});
+
+const roleId = document.querySelector('.role-id');
+const roleEmail = document.querySelector('.role-email');
+role.addEventListener('change', () => {
+  if (role.value === 'admin') {
+    roleId.innerText = 'Admin';
+    roleEmail.innerText = 'admin';
+    id.placeholder = 'Admin ID';
+    email.value = `${id.value}@admin.buksu.edu.ph`;
+  } else {
+    roleId.innerText = 'Student';
+    roleEmail.innerText = 'student';
+    id.placeholder = 'Student ID';
+    email.value = `${id.value}@student.buksu.edu.ph`;
+  }
 });
 
 // Show and hide icon in password button

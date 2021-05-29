@@ -1,7 +1,7 @@
 <?php
 
-function emptyInputSignup($studentId, $firstName, $middleName, $lastName, $email, $phone, $password) {
-    $isInputEmpty = empty($studentId) || empty($firstName) || empty($middleName) || empty($lastName) || empty($email) || empty($phone) || empty($password);
+function emptyInputSignup($studentId, $firstName, $middleName, $lastName, $password) {
+    $isInputEmpty = empty($studentId) || empty($firstName) || empty($middleName) || empty($lastName) || empty($password);
     if ($isInputEmpty) {
         return true;
     }
@@ -31,8 +31,9 @@ function emptyInputLogin($username, $password) {
 }
 
 function invalidUsername($username) {
-    $regex = "(^[A-Za-z0-9]+@student.buksu.edu.ph)|([0-9]){0,}";
-    if (!preg_match($regex, $username)) {
+    $regexStudent = "(^[A-Za-z0-9]+@student.buksu.edu.ph)|([0-9]){0,}";
+    $regexAdmin = "(^[A-Za-z0-9]+@admin.buksu.edu.ph)|([0-9]){0,}";
+    if (!preg_match($regexStudent, $username) || !preg_match($regexAdmin, $username)) {
         return true;
     }
     return false;

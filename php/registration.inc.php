@@ -2,8 +2,8 @@
 
 if (isset($_POST["register"])) {
 
-    $studentId = $_POST["student-id"];
-    $email = $_POST["university-email"];
+    $id = $_POST["id"];
+    $email = $_POST["email"];
     $password = $_POST["password"];
     $firstName = $_POST["first-name"];
     $middleName = $_POST["middle-name"];
@@ -12,22 +12,23 @@ if (isset($_POST["register"])) {
     $gender = $_POST["gender"];
     $course = $_POST["course"];
     $yearLevel = $_POST["year-level"];
+    $role = $_POST["role"];
 
     require_once "db.inc.php";
     require_once "functions.inc.php";
     require_once "error-handling.inc.php";
 
-    if (idExists($conn, $studentId, $email) === true) {
+    if (idExists($conn, $id) !== false) {
         header("location: ../registration.php?signup=idtaken");
         exit();
     }
 
-    if(emptyInputSignup($studentId, $firstName, $middleName, $lastName, $email, $phone, $password) === true) {
+    if (emptyInputSignup($id, $firstName, $middleName, $lastName, $password) === true) {
         header("location: ../registration.php?signup=emptyinput");
         exit();
     }
 
-    if((nameValidation($firstName) || nameValidation($middleName) || nameValidation($lastName)) === true) {
+    if ((nameValidation($firstName) || nameValidation($middleName) || nameValidation($lastName)) === true) {
         header("location: ../registration.php?signup=invalidinput");
     }
 
@@ -35,7 +36,7 @@ if (isset($_POST["register"])) {
         header("location: ../registration.php?signup=invalidemail");
     }
 
-    createUser($conn, $studentId, $email, $password, $firstName, $middleName, $lastName, $phone, $gender, $course, $yearLevel);
+    createUser($conn, $id, $email, $password, $firstName, $middleName, $lastName, $phone, $gender, $course, $yearLevel, $role);
 } else {
     header("location: ../registration.php?signup=none");
     exit();

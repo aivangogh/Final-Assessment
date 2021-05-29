@@ -1,13 +1,12 @@
 <?php
 session_start();
 
-if (isset($_SESSION["student-id"]) && isset($_SESSION["email"])) {
+if (isset($_SESSION["id"]) && isset($_SESSION["email"])) {
 
     require "php/functions.inc.php";
     require "php/db.inc.php";
-    $currentSessionId = $_SESSION["student-id"];
-    $currentSessionEmail = $_SESSION["email"];
-    $user = userData($conn, $currentSessionId, $currentSessionEmail);
+    $currentSessionId = $_SESSION["id"];
+    $user = userData($conn, $currentSessionId);
     $userCourse = getCourse($conn, $currentSessionId);
     // var_dump($course);
 } else {
@@ -116,10 +115,10 @@ if (isset($_SESSION["student-id"]) && isset($_SESSION["email"])) {
                     <span>Profile</span>
                     <button onclick="location.href='php/logout.inc.php';" class=" logout-btn" type="button">Logout</button>
                 </div>
-                <div class="student-id-and-email-container">
-                    <div class="student-id input-container">
-                        <label class="input-header" for="student-id">Student ID</label>
-                        <input class="input disabled" id="student-id" type="text" name="student-id" value="<?php echo $user["student_id"]; ?>" placeholder="Student ID *" required>
+                <div class="id-and-email-container">
+                    <div class="id input-container">
+                        <label class="input-header" for="id">Student ID</label>
+                        <input class="input disabled" id="id" type="text" name="id" value="<?php echo $user["id"]; ?>" placeholder="Student ID *" required>
                     </div>
 
                     <div class="email input-container">
@@ -149,7 +148,7 @@ if (isset($_SESSION["student-id"]) && isset($_SESSION["email"])) {
                 <div class="phone-and-gender-container">
                     <div class="phone input-container">
                         <label class="input-header" for="phone">Phone</label>
-                        <input class="input" id="phone" type="text" name="phone" value="<?php echo $user["phone"]; ?>" placeholder="Phone *">
+                        <input class="input" id="phone" type="text" name="phone" value="<?php echo $user["phone"]; ?>" placeholder="Phone">
                     </div>
 
                     <div class="radio-container">

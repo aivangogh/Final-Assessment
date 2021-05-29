@@ -4,7 +4,7 @@ import {
   YEAR_LEVEL as yearLevelArray,
 } from './colleges-courses.js';
 
-const studentID = document.getElementById('student-id');
+const id = document.getElementById('id');
 const email = document.getElementById('university-email');
 const password = document.querySelectorAll('.password');
 const firstName = document.getElementById('first-name');
@@ -28,7 +28,7 @@ changeAvatar();
 disableRestrictedInput();
 
 function disableRestrictedInput() {
-  studentID.disabled = true;
+  id.disabled = true;
   email.disabled = true;
   college.disabled = true;
   course.disabled = true;
@@ -62,7 +62,7 @@ function updateCardProfileInfo() {
 
 // Same as above
 function updateProfileInfo() {
-  studentID.value = user.getStudentID();
+  id.value = user.getStudentID();
   email.value = user.getEmail();
   email.disabled = true;
   emailLabel.innerText = `Email Address (disabled)`;

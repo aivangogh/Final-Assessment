@@ -233,7 +233,7 @@ select {
   background-color: #03356b;
 }
 
-.student-id-and-email-container {
+.id-and-email-container {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: var(--space-gap);

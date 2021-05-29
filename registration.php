@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION["student-id"]) && isset($_SESSION["email"])) {
+if (isset($_SESSION["id"]) && isset($_SESSION["email"])) {
     header('location: home.php');
     exit();
 }
@@ -41,8 +41,14 @@ if (isset($_SESSION["student-id"]) && isset($_SESSION["email"])) {
             <form id="registration-form" method="POST" action="php/registration.inc.php" novalidate>
                 <div class="form-left-column">
                     <div class="input-container">
-                        <label class="input-header" for="student-id">Student ID</label>
-                        <input class="input" id="student-id" type="text" name="student-id" placeholder="Student ID *" pattern="[0-9]{10}" title="ID should only contain numbers and length of 10" required>
+                        <label class="input-header" for="student-id"><span class="role-id">Student</span> ID</label>
+                        <input class="input" id="id" type="text" name="id" placeholder="Student ID *" pattern="[0-9]{10}" title="ID should only contain numbers and length of 10" required>
+                    </div>
+
+                    <div class="input-container">
+                        <label class="input-header" for="email">University Email
+                            (@<span class="role-email">student</span>.buksu.edu.ph)</label>
+                        <input class="input" id="email" type="email" name="email" placeholder="University Email" readonly="readonly" pattern="^[A-Za-z0-9]+@student.buksu.edu.ph{0,}" required>
                     </div>
 
                     <div class="input-container">
@@ -61,14 +67,8 @@ if (isset($_SESSION["student-id"]) && isset($_SESSION["email"])) {
                     </div>
 
                     <div class="input-container">
-                        <label class="input-header" for="university-email">University Email
-                            (@student.buksu.edu.ph)</label>
-                        <input class="input" id="university-email" type="text" name="university-email" placeholder="University Email *" pattern="^[A-Za-z0-9]+@student.buksu.edu.ph{0,}" required>
-                    </div>
-
-                    <div class="input-container">
                         <label class="input-header" for="phone">Phone</label>
-                        <input class="input" id="phone" type="text" name="phone" placeholder="Phone *" pattern="^(09|\+639)\d{9}$" title="Format must be like this. 09xxxxxxxxx" required>
+                        <input class="input" id="phone" type="text" name="phone" placeholder="Phone" pattern="^(09|\+639)\d{9}$" title="Format must be like this. 09xxxxxxxxx">
                     </div>
 
                     <div class="radio-container">
@@ -120,7 +120,16 @@ if (isset($_SESSION["student-id"]) && isset($_SESSION["email"])) {
                     </div>
 
                     <div class="register-container">
-                        <button id="register-button" name="register" type="submit">Register</button>
+                        <div class="register-as-container">
+                            <label class="input-header" for="password">Register as</label>
+                            <select name="role" id="role">
+                                <option value="student" selected>Student</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                        <div class="register-button-container">
+                            <button id="register-button" name="register" type="submit">Register</button>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -130,7 +139,7 @@ if (isset($_SESSION["student-id"]) && isset($_SESSION["email"])) {
                 if (isset($_GET["signup"])) {
                     $signupResponse = $_GET["signup"];
                     if ($signupResponse == "idtaken") {
-                        echo "<div class='error-bg'><p class='error'>Student ID already taken.</p></div>";
+                        echo "<div class='error-bg'><p class='error'>ID already taken.</p></div>";
                     }
 
                     if ($signupResponse == "stmtfail") {
