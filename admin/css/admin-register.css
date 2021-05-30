@@ -34,7 +34,7 @@ select:focus {
 
 .container {
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: .5fr 3fr;
   height: 100%;
 }
 

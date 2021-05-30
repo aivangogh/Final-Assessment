@@ -1,0 +1,123 @@
+@font-face {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  src: url('../font/Montserrat-Regular.ttf');
+}
+
+body {
+  font-family: 'Helvetica', sans-serif;
+  background-color: #f4f3ef;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='tel'],
+input[type='password'],
+select {
+  background-color: #fff;
+  width: 100%;
+  height: var(--box-height);
+  padding: 5px 10px;
+  border: 1px var(--outline-color) solid;
+  border-radius: 3px;
+  outline: none;
+  font-size: 1rem;
+  font-family: 'Montserrat';
+  font-weight: 500;
+}
+
+input[type='text']:focus,
+input[type='password']:focus,
+select:focus {
+  border: 2px var(--primary-color) solid;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 0.5fr 3fr;
+  height: 100vh;
+}
+
+.left-column {
+  background-color: var(--primary-color);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  padding: 30px 0;
+  height: 100%;
+}
+
+.logo-wrapper {
+  height: 20em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2em;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header img {
+  height: 12rem;
+  width: 12rem;
+}
+
+.left-column span {
+  padding: 1rem;
+  font-size: 1.5em;
+}
+
+.left-column button {
+  height: var(--box-height);
+  width: 10rem;
+  border-radius: 30px;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.left-column button:hover {
+  background-color: #e6e6e6;
+}
+
+.right-column {
+  display: grid;
+  grid-template-rows: 0.5fr 5fr 0.3fr;
+  padding: 3rem;
+  height: 100%;
+}
+
+.query-container {
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.query-response {
+  font-size: 1.3em;
+}
+
+.table-container {
+  height: 100%;
+  width: 100%;
+}
+
+/* .table {
+  display: flex;
+  justify-content: center;
+} */
+
+tr {
+  width: 100%;
+}

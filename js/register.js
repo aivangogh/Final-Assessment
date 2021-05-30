@@ -20,25 +20,6 @@ const role = document.getElementById('role');
 
 const registerForm = document.getElementById('registration-form');
 
-registerForm.addEventListener('submit', (e) => {
-  // e.preventDefault();
-  // let data = {
-  //   studentId: parseInt(studentId.value),
-  //   firstName: firstName.value,
-  //   middleName: middleName.value,
-  //   lastName: lastName.value,
-  //   email: email.value,
-  //   phone: phone.value,
-  //   gender: genderValue(),
-  //   password: password.value,
-  //   college: college.value,
-  //   course: course.value,
-  //   yearLevel: parseInt(yearLevel.value),
-  // };
-  // postRequest(data);
-  // window.location = 'login.html';
-});
-
 function genderValue() {
   let genderValue = '';
   gender.forEach((gender) => {
@@ -46,12 +27,6 @@ function genderValue() {
   });
   return genderValue;
 }
-
-passwordName.oninput = () => {
-  console.log(email.getAttributeNames.value);
-};
-
-email.readonly = true;
 
 id.addEventListener('input', () => {
   autoComplete(id);
@@ -63,8 +38,6 @@ id.addEventListener('blur', () => {
   } else {
     email.value = `${id.value}@student.buksu.edu.ph`;
   }
-
-  console.log(email.value);
 });
 
 function autoComplete(input) {

@@ -33,7 +33,7 @@ const form = {
 //   let requestData = `username=${form.username.value}&password=${
 //     form.password.value
 //   }&login=${'login'}`;
-//   request.open('POST', 'php/login.inc.php', true);
+//   request.open('POST', 'includes/login.php', true);
 //   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 //   request.send(requestData);
 // });

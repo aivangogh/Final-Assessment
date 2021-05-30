@@ -1,0 +1,272 @@
+@font-face {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  src: url('../font/Montserrat-Regular.ttf');
+}
+
+body {
+  font-family: 'Helvetica', sans-serif;
+  background-color: #f4f3ef;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='tel'],
+input[type='password'],
+select {
+  background-color: #fff;
+  width: 100%;
+  height: var(--box-height);
+  padding: 5px 10px;
+  border: 1px var(--outline-color) solid;
+  border-radius: 3px;
+  outline: none;
+  font-size: 1rem;
+  font-family: 'Montserrat';
+  font-weight: 500;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: var(--radius);
+  box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
+}
+
+.container {
+  padding: 2rem;
+  height: 100vh;
+}
+
+.table {
+  display: grid;
+  grid-template-rows: 0.5fr 4fr 0.3fr;
+  padding: 2rem;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header span {
+  font-size: 2rem;
+}
+
+.logout-btn {
+  font-family: 'Montserrat';
+  background-color: #0062cd;
+  color: #fff;
+  height: var(--box-height);
+  width: 10rem;
+  border-radius: var(--radius);
+  border: none;
+  font-size: 1em;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: #03356b;
+}
+
+.table-data table {
+  width: 100%;
+}
+
+th {
+  height: 2rem;
+}
+
+tr {
+  text-align: center;
+  padding: 20px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.action-icon {
+  background-color: #0062cd;
+}
+
+.action-icon:hover {
+  background-color: #002f61;
+}
+
+.edit-btn,
+.delete-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+  border: none;
+}
+
+.edit-btn img,
+.delete-btn img {
+  filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(353deg)
+    brightness(105%) contrast(101%);
+  height: 1rem;
+}
+
+.add-action-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.add-icon {
+  filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(353deg)
+    brightness(105%) contrast(101%);
+  height: 1.5rem;
+}
+
+.add-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  border: none;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 65rem;
+  padding: 30px;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  gap: 20px;
+}
+
+.input-container {
+  padding: 5px 0;
+}
+
+.gender-radio {
+  height: var(--box-height);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Montserrat';
+}
+
+.modal-header-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 20px;
+}
+
+.modal-header {
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+}
+
+.modal-actions-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.action-btn button {
+  background-color: var(--primary-color);
+  color: #fff;
+  height: 2.5rem;
+  width: 7rem;
+  border-radius: 50px;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.action-btn button:hover {
+  background-color: #0358b3;
+}
+
+.delete-modal-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30rem;
+  gap: 30px;
+  padding: 30px;
+}
+
+.prompt-msg {
+  font-size: 1.5rem;
+}
+
+.log-info {
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+
+.delete-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+#overlay {
+  position: fixed;
+  opacity: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  transition: 200ms ease-in-out;
+}
+
+#overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}

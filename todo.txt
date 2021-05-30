@@ -1,6 +1,11 @@
 // -Create Registration response
 // -Catch errors
-// Create admin page
-// add role
-// create signup for admin and student
-// id and id digit in email should match
+// -add role
+// -create signup for admin and student
+// -id and id digit in email should match
+// -Create admin page
+// Display all registered users
+// add functionalities in action buttons
+    * delete
+    * add
+    * edit

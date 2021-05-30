@@ -6,17 +6,17 @@ if (isset($_POST["login"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    require_once "db.inc.php";
-    require "functions.inc.php";
-    require "error-handling.inc.php";
+    require_once "connect-db.php";
+    require "functions.php";
+    require "error-handling.php";
 
     if (emptyInputLogin($username, $password) === true) {
-        header("location: ../login.php?login=emptyinput");
+        header("location: ../index.php?login=emptyinput");
         exit();
     }
 
     loginUser($conn, $username, $password);
 } else {
-    header("location: ../login.php");
+    header("location: ../index.php");
     exit();
 }

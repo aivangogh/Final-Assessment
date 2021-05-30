@@ -1,16 +1,18 @@
 <?php
 session_start();
 
-if (isset($_SESSION["id"]) && isset($_SESSION["email"])) {
-
-    require "php/functions.inc.php";
-    require "php/db.inc.php";
-    $currentSessionId = $_SESSION["id"];
-    $user = userData($conn, $currentSessionId);
-    $userCourse = getCourse($conn, $currentSessionId);
-    // var_dump($course);
+if (isset($_SESSION["id"]) && isset($_SESSION["role"])) {
+    if ($_SESSION['role'] === 'student') {
+        require "includes/functions.php";
+        require "includes/connect-db.php";
+        $currentSessionId = $_SESSION["id"];
+        $user = userData($conn, $currentSessionId);
+        $userCourse = getCourse($conn, $currentSessionId);
+    } else {
+        header("location: admin/admin-dashboard.php");
+    }
 } else {
-    header("location: login.php");
+    header("location: index.php");
 }
 
 ?>
@@ -110,10 +112,10 @@ if (isset($_SESSION["id"]) && isset($_SESSION["email"])) {
             </div>
         </div>
         <div class="right-column">
-            <form class="user-profile card" method="POST" action="php/home.inc.php">
+            <form class="user-profile card" method="POST" action="includes/home.php">
                 <div class="profile-header">
                     <span>Profile</span>
-                    <button onclick="location.href='php/logout.inc.php';" class=" logout-btn" type="button">Logout</button>
+                    <button onclick="location.href='includes/logout.php';" class=" logout-btn" type="button">Logout</button>
                 </div>
                 <div class="id-and-email-container">
                     <div class="id input-container">

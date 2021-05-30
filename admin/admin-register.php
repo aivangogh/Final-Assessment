@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-if (isset($_SESSION["id"]) && isset($_SESSION["email"])) {
-    header('location: home.php');
-    exit();
-}
+// if (isset($_SESSION["id"]) && isset($_SESSION["email"])) {
+//     header('location: home.php');
+//     exit();
+// }
 ?>
 
 <!DOCTYPE html>
@@ -15,27 +15,24 @@ if (isset($_SESSION["id"]) && isset($_SESSION["email"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./assets/images/Logo_of_Bukidnon_State_University.png">
-    <link rel="stylesheet" href="css/registration.css">
-    <link rel="stylesheet" href="css/util.css">
+    <link rel="stylesheet" href="css/admin-register.css">
+    <link rel="stylesheet" href="../css/util.css">
     <title>Registration | BUKSU E-learn</title>
 </head>
 
 <body>
     <div class="container">
         <div class="left-column">
-            <div>
-                <div class="logo-wrapper">
-                    <img src="assets/images/Logo_of_Bukidnon_State_University.png" alt="buksu-logo">
-                </div>
-                <span>Welcome!</span>
-                <p>Your 30 seconds away in creating your BukSU <nobr>e-learn</nobr> account</p>
+            <div class="header">
+                <span>Admin dashboard</span>
+                <button onclick="location.href='../includes/logout.php';" class="logout-btn" type="button">Logout</button>
             </div>
         </div>
 
         <div class="right-column">
             <div class="error-container">
                 <?php
-                require "includes/error-handling.php";
+                require "../includes/error-handling.php";
                 if (isset($_GET["signup"])) displaySignupError($_GET["signup"]);
                 ?>
             </div>
@@ -129,16 +126,10 @@ if (isset($_SESSION["id"]) && isset($_SESSION["email"])) {
                                 <option value="admin">Admin</option>
                             </select>
                         </div>
-                        <div class="register-button-container">
-                            <button id="register-button" name="register" type="submit">Register</button>
-                        </div>
+
                     </div>
                 </div>
             </form>
-
-            <div class="sign-in">
-                <span class="signin">Already signed up? <a href="index.php">Sign in Here!</a></span>
-            </div>
 
         </div>
     </div>

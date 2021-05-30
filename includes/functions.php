@@ -70,7 +70,7 @@ function loginUser($conn, $username, $password) {
     $idExists = idExists($conn, $username);
 
     if ($idExists === false) {
-        header("location: ../login.php?login=doesntexists");
+        header("location: ../index.php?login=doesntexists");
         exit();
     }
 
@@ -78,20 +78,22 @@ function loginUser($conn, $username, $password) {
     $checkedPwd = password_verify($password, $pwdHashed);
 
     if ($checkedPwd === false) {
-        header("location: ../login.php?login=fail");
+        header("location: ../index.php?login=fail");
         exit();
     } else if ($checkedPwd === true) {
         if ($idExists["role"] === "student") {
             session_start();
             $_SESSION['id'] = $idExists["id"];
             $_SESSION['email'] = $idExists["email"];
+            $_SESSION['role'] = $idExists["role"];
             header("location: ../home.php");
             exit();
         } else {
             session_start();
             $_SESSION['id'] = $idExists["id"];
             $_SESSION['email'] = $idExists["email"];
-            header("location: ../admin.html");
+            $_SESSION['role'] = $idExists["role"];
+            header("location: ../admin/admin-dashboard.php");
             exit();
         }
     }

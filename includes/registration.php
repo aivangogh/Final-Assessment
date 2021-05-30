@@ -14,9 +14,9 @@ if (isset($_POST["register"])) {
     $yearLevel = $_POST["year-level"];
     $role = $_POST["role"];
 
-    require_once "db.inc.php";
-    require_once "functions.inc.php";
-    require_once "error-handling.inc.php";
+    require_once "connect-db.php";
+    require_once "functions.php";
+    require_once "error-handling.php";
 
     if (idExists($conn, $id) !== false) {
         header("location: ../registration.php?signup=idtaken");

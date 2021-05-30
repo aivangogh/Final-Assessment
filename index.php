@@ -37,23 +37,11 @@ if (isset($_SESSION["id"]) && isset($_SESSION["email"])) {
             <div class="logo">
                 <img class="buksu-logo" src="assets/images/Logo_of_Bukidnon_State_University.png" alt="buksu-logo">
             </div>
-            <form id="login-form" method="POST" action="php/login.inc.php" novalidate>
+            <form id="login-form" method="POST" action="includes/login.php" novalidate>
                 <div class="error-container">
                     <?php
-                    if (isset($_GET["login"])) {
-                        $loginResponse = $_GET["login"];
-                        if ($loginResponse == "emptyinput") {
-                            echo "<div id='login-error'><p class='error-message'>Input is empty!</p></div>";
-                        }
-
-                        if ($loginResponse == "stmtfail") {
-                            echo "<div id='login-error'><p class='error-message'>Something went wrong, try again!</p></div>";
-                        }
-
-                        if ($loginResponse == "fail") {
-                            echo "<div id='login-error'><p class='error-message'>Login failed, Please try again.</p></div>";
-                        }
-                    }
+                    require "includes/error-handling.php";
+                    if (isset($_GET["login"])) displayLoginError($_GET["login"]);
                     ?>
                 </div>
                 <div class="input-container email-id-container">
