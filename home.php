@@ -1,15 +1,17 @@
 <?php
 session_start();
 
-if (isset($_SESSION["id"]) && isset($_SESSION["role"])) {
+if (isset($_SESSION["id"])) {
     if ($_SESSION['role'] === 'student') {
         require "includes/functions.php";
         require "includes/connect-db.php";
         $currentSessionId = $_SESSION["id"];
         $user = userData($conn, $currentSessionId);
-        $userCourse = getCourse($conn, $currentSessionId);
+        $userCourse = getCourse($conn, $user["course_id"], $currentSessionId);
+        var_dump($user);
+        var_dump($userCourse);
     } else {
-        header("location: admin/admin-dashboard.php");
+        header("location: admin/");
     }
 } else {
     header("location: index.php");

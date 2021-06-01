@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION["id"]) && isset($_SESSION["role"])) {
+if (isset($_SESSION["id"])) {
     if ($_SESSION["role"] === "admin") {
         require_once "../includes/connect-db.php";
         require_once "includes/functions.php";
@@ -23,26 +23,25 @@ if (isset($_SESSION["id"]) && isset($_SESSION["role"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./assets/images/Logo_of_Bukidnon_State_University.png">
+    <link rel="icon" href="../assets/images/Logo_of_Bukidnon_State_University.png">
     <link rel="stylesheet" href="css/admin-dashboard.css">
     <link rel="stylesheet" href="../css/util.css">
-    <title>Registration | BUKSU E-learn</title>
+    <title>Admin | BUKSU E-learn</title>
 </head>
 
 <body>
     <div class="container">
-        <div class="left-column">
-            <div class="header">
-                <img src="../assets/images/Logo_of_Bukidnon_State_University.png" alt="buksu-logo">
-                <span>Admin Dashboard</span>
-            </div>
-            <button onclick="location.href='../includes/logout.php';" class="logout-btn" type="button">Logout</button>
-        </div>
+        <?php include('includes/sidebar.php'); ?>
 
         <div class="right-column">
             <div class="query-container">
                 <div class="query-response-container">
                     <p class="query-response">Lorem ipsum dolor sit amet</p>
+                    <?php
+                    echo '<pre>';
+                    var_dump($_SESSION);
+                    echo '</pre>';
+                    ?>
                 </div>
 
             </div>
@@ -70,10 +69,10 @@ if (isset($_SESSION["id"]) && isset($_SESSION["role"])) {
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_array($result)) {
                     ?>
-                            <tr class='table-row-data'>
+                            <tr class='table-row'>
                                 <td><?php echo $row['id']; ?></td>
                                 <td><?php echo $row['email']; ?></td>
-                                <td></td>
+                                <td><?php echo $row['password']; ?></td>
                                 <td><?php echo $row['first_name']; ?></td>
                                 <td><?php echo $row['middle_name']; ?></td>
                                 <td><?php echo $row['last_name']; ?></td>
@@ -84,8 +83,14 @@ if (isset($_SESSION["id"]) && isset($_SESSION["role"])) {
                                 <td><?php echo $row['role']; ?></td>
                                 <td>
                                     <div class='actions'>
-                                        <button class="edit-btn action-icon"><img class="edit-icon" src="../assets/icons/edit-solid.svg"></button>
-                                        <button class="delete-btn action-icon"><img class="delete-icon" src="../assets/icons/trash-alt-regular.svg"></button>
+                                        <form action="signup.php" method="POST">
+                                            <input type="hidden" name="edit-input" value="<?php echo $row['id']; ?>">
+                                            <button type="sumbit" name="edit-btn" class="edit-btn action-btn"><img class="edit-icon" src="../assets/icons/edit-solid.svg"></button>
+                                        </form>
+                                        <form action="includes/signup-delete.php" method="POST">
+                                            <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                            <button type="sumbit" class="delete-btn action-btn"><img class="delete-icon" src="../assets/icons/trash-alt-regular.svg"></button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
@@ -99,9 +104,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["role"])) {
                 </table>
             </div>
             <div class="add-action-container">
-                <button class="add-btn action-icon">
-                    <img class="add-icon" src="../assets/icons/plus-solid.svg">
-                </button>
+                <button onclick="location.href='signup.php';" class="add-btn action-btn"><img class="add-icon" src="../assets/icons/plus-solid.svg"></button>
             </div>
         </div>
     </div>

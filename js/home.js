@@ -12,6 +12,8 @@ const middleName = document.getElementById('middle-name');
 const lastName = document.getElementById('last-name');
 const phone = document.getElementById('phone');
 const gender = document.querySelectorAll('input[name="gender"]');
+const genderMale = document.getElementById('male');
+const genderFemale = document.getElementById('female');
 const college = document.getElementById('college');
 const course = document.getElementById('course');
 const yearLevel = document.getElementById('year-level');
@@ -33,6 +35,8 @@ function disableRestrictedInput() {
   college.disabled = true;
   course.disabled = true;
   yearLevel.disabled = true;
+  genderMale.disabled = true;
+  genderFemale.disabled = true;
 }
 
 function changeAvatar() {

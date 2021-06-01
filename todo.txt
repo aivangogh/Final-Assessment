@@ -1,11 +1,34 @@
-// -Create Registration response
-// -Catch errors
-// -add role
-// -create signup for admin and student
-// -id and id digit in email should match
-// -Create admin page
-// Display all registered users
-// add functionalities in action buttons
+********* TODO *********
+
+// Create Registration response
+// Catch errors
+// add role
+// create signup for admin and student
+// id and id digit in email should match
+// Create admin page
+- Display all registered users
+- Add functionalities in action buttons
     * delete
-    * add
+    * add 
     * edit
+- logout modal
+- Clear some session if the user moved to other pages
+
+    - edit and add must be at the same page, 
+    - if admin click the add button- it will start add session
+        else it will start edit session
+
+********* FIX ME *********
+
+// Error handling
+    *--user doesn't exists
+    * Home page errors - returning null
+
+
+********* FIXED *********
+
+// Register success message - oversize bg
+
+
+********** CHANGES **********
+I convert colleges-courses.js into JSON file because is just a data

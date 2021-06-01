@@ -100,7 +100,7 @@ select:focus {
 
 .success-bg {
   background-color: #dfffc3;
-  height: 100%;
+  height: 3rem;
   width: 30em;
   display: flex;
   flex-direction: row;

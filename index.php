@@ -1,11 +1,12 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', TRUE);
 session_start();
 
-if (isset($_SESSION["id"]) && isset($_SESSION["email"])) {
-    header('location: home.php');
-    exit();
+if (isset($_SESSION["id"])) {
+    if($_SESSION['role'] === 'student') {
+        header('location: home.php');
+    } else{
+        header('location: admin/');
+    }
 }
 ?>
 

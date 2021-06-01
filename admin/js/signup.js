@@ -10,11 +10,10 @@ window.onload = () => {
   loadJSON();
 };
 
-// This is AJAX XHR Request
 function loadJSON() {
   const request = new XMLHttpRequest();
   request.overrideMimeType('application/json');
-  request.open('GET', 'json/colleges-courses.json', true);
+  request.open('GET', '../json/colleges-courses.json', true);
   request.onreadystatechange = () => {
     if (request.readyState == 4 && request.status == '200') {
       parseJSON(request.responseText);
@@ -23,7 +22,6 @@ function loadJSON() {
   request.send(null);
 }
 
-// Parse JSON to create Array of objects
 function parseJSON(response) {
   const parsedData = JSON.parse(response);
   const collegeArray = [...parsedData.College];
@@ -109,9 +107,9 @@ document.querySelector('.password-button').addEventListener('click', (e) => {
   e.preventDefault();
   if (password.type == 'password') {
     password.type = 'text';
-    passwordIcon.src = 'assets/images/eye-regular.svg';
+    passwordIcon.src = '../assets/images/eye-regular.svg';
   } else {
     password.type = 'password';
-    passwordIcon.src = 'assets/images/eye-slash-regular.svg';
+    passwordIcon.src = '../assets/images/eye-slash-regular.svg';
   }
 });
