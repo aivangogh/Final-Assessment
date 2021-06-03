@@ -11,7 +11,7 @@ if (isset($_SESSION["id"])) {
         var_dump($user);
         var_dump($userCourse);
     } else {
-        header("location: admin/");
+        header("location: admin/dashboard.php");
     }
 } else {
     header("location: index.php");

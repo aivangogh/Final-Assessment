@@ -49,17 +49,29 @@ function getUserData($conn, $id) {
 }
 
 function createUser($conn, $studentId, $email, $password, $firstName, $middleName, $lastName, $phone, $gender, $course, $yearLevel, $role) {
-    $sql = "INSERT INTO user (id, email, password, first_name, middle_name, last_name, phone, gender, course_id, year_level, role) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    $sql = "INSERT INTO users (id, email, password, first_name, middle_name, last_name, phone, gender, course_id, year_level, role) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
 
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../signup.phpn.php?sign=stmtfail");
+        header("location: ../dashboard.php?sign=stmtfail");
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "sssssssssss", $studentId, $email, $password, $firstName, $middleName, $lastName, $phone, $gender, $course, $yearLevel, $role);
+    mysqli_stmt_bind_param($stmt, "sssssssssss", $id, $email, $password, $firstName, $middleName, $lastName, $phone, $gender, $course, $yearLevel, $role);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    header("location: ../signup.php?signup=success");
-    exit();
+}
+
+function updateUser($conn, $id, $email, $password, $firstName, $middleName, $lastName, $phone, $gender, $course, $yearLevel, $role) {
+    $sql = "UPDATE users SET (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) WHERE id = ?;";
+    $stmt = mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../dashboard.php?sign=stmtfail");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "ssssssssss", $email, $password, $firstName, $middleName, $lastName, $phone, $gender, $course, $yearLevel, $role, $id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
 }

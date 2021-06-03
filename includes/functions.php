@@ -23,11 +23,11 @@ function idExists($conn, $id) {
 }
 
 function createUser($conn, $studentId, $email, $password, $firstName, $middleName, $lastName, $phone, $gender, $course, $yearLevel, $role) {
-    $sql = "INSERT INTO user (id, email, password, first_name, middle_name, last_name, phone, gender, course_id, year_level, role) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    $sql = "INSERT INTO users (id, email, password, first_name, middle_name, last_name, phone, gender, course_id, year_level, role) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
 
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../registration.php?sign=stmtfail");
+        header("location: ../registration.php?signup=stmtfail");
         exit();
     }
 
@@ -82,7 +82,7 @@ function loginUser($conn, $username, $password) {
             session_start();
             $_SESSION['id'] = $idExists["id"];
             $_SESSION['role'] = $idExists["role"];
-            header("location: ../admin/");
+            header("location: ../admin/dashboard.php");
             exit();
         }
     } else {

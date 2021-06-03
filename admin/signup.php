@@ -5,9 +5,9 @@ if (isset($_SESSION["id"])) {
     if ($_SESSION["role"] === "admin") {
         require_once "includes/connect-db.php";
         require_once "includes/functions.php";
-        $user = getUserData($conn, $_SESSION["id"]);
-        if (isset($_POST["edit-btn"])) {
+        if (isset($_POST["edit-id"])) {
             $_SESSION['mode'] = 'edit';
+            $user = getUserData($conn, $_POST["edit-id"]);
         } else {
             $_SESSION['mode'] = 'add';
         }
@@ -34,16 +34,13 @@ if (isset($_SESSION["id"])) {
 
 <body>
     <div class="container">
-        <?php include('includes/sidebar.php'); ?>
+        <?php include('layouts/sidebar.php'); ?>
 
         <div class="right-column">
             <div class="error-container">
                 <?php
-                echo '<pre>';
-                var_dump($_SESSION);
-                echo '</pre>';
                 require "includes/error-handling.php";
-                if (isset($_SESSION["role"])) displaySignupError($_GET["signup"]);
+                // if (isset($_SESSION["role"])) displaySignupError($_GET["signup"]);
                 ?>
             </div>
 
@@ -79,12 +76,12 @@ if (isset($_SESSION["id"])) {
                         <div class="radio-container">
                             <label class="input-header">Gender</label>
                             <div class="radio-gender">
-                                <label>
-                                    <input id="male" type="radio" name="gender" value="male" required>
+                                <label for="gender">
+                                    <input id="male" type="radio" name="gender" value="male" <?php echo ($user["gender"] === 'male') ? 'checked' : ''; ?>>
                                     Male
                                 </label>
-                                <label>
-                                    <input id="female" type="radio" name="gender" value="female" required>
+                                <label for="gender">
+                                    <input id="female" type="radio" name="gender" value="female" <?php echo ($user["gender"] === 'female') ? 'checked' : ''; ?>>
                                     Female
                                 </label>
                             </div>

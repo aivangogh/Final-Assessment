@@ -2,10 +2,10 @@
 session_start();
 
 if (isset($_SESSION["id"])) {
-    if($_SESSION['role'] === 'student') {
+    if ($_SESSION['role'] === 'student') {
         header('location: home.php');
-    } else{
-        header('location: admin/');
+    } else {
+        header('location: admin/dashboard.php');
     }
 }
 ?>

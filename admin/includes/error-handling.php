@@ -86,3 +86,17 @@ function displaySignupError($signupResponse) {
         echo "<div class='success-bg'><p class='success'>You have signed up!.</p></div>";
     }
 }
+
+function displayDashboardResponse($dashboardResponse) {
+    if ($dashboardResponse == "success") {
+        echo "<div id='dashboard-success'><p class='success-message'>Query added successfully!</p></div>";
+    }
+
+    if ($dashboardResponse == "stmtfail") {
+        echo "<div id='login-error'><p class='error-message'>Something went wrong, try again!</p></div>";
+    }
+
+    if ($dashboardResponse == "fail") {
+        echo "<div id='login-error'><p class='error-message'>Login failed, Please try again.</p></div>";
+    }
+}

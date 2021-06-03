@@ -3,14 +3,14 @@ session_start();
 if (isset($_SESSION["id"])) {
     if ($_SESSION["role"] === "admin") {
         if (isset($_POST["save-btn"])) {
-            $_SESSION['add'] = 'add';
-            addData();
+
             if ($_SESSION['mode'] === 'edit') {
                 $_SESSION['edit'] = 'edit';
-                editData();
+                updateData();
                 unset($_SESSION["mode"]);
             } else {
-
+                $_SESSION['add'] = 'add';
+                addData();
                 unset($_SESSION["mode"]);
             }
         }
@@ -25,37 +25,30 @@ if (isset($_SESSION["id"])) {
     header("location: ../index.php");
 }
 
-function editData() {
+function updateData() {
     if (isset($_POST['edit-btn'])) {
         require_once "connect-db.php";
         // require_once "includes/functions.php";
         $id = $_POST["id"];
-        $sql = "SELECT * FROM user";
-        $stmt = mysqli_stmt_init($conn);
-        if (!mysqli_stmt_prepare($stmt, $sql)) {
-            header("location: ../registration.php?signup=stmtfail");
-            exit();
-        }
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+        $firstName = $_POST["first-name"];
+        $middleName = $_POST["middle-name"];
+        $lastName = $_POST["last-name"];
+        $phone = $_POST["phone"];
+        $gender = $_POST["gender"];
+        $course = $_POST["course"];
+        $yearLevel = $_POST["year-level"];
+        $role = $_POST["role"];
 
-        mysqli_stmt_bind_param($stmt, "s", $id);
-        mysqli_stmt_execute($stmt);
-
-        $resultData = mysqli_stmt_get_result($stmt);
-
-        if ($row = mysqli_fetch_assoc($resultData)) {
-            return $row;
-        } else {
-            return false;
-        }
-
-        mysqli_stmt_close($stmt);
+        updateUser($conn, $id, $email, $password, $firstName, $middleName, $lastName, $phone, $gender, $course, $yearLevel, $role);
     }
 }
 
 function cancelAction() {
     unset($_SESSION["mode"]);
     $_SESSION['cancel'] = 'cancel';
-    header('location: ../index.php');
+    header('location: ../dashboard.php');
 }
 
 function addData() {
@@ -95,4 +88,5 @@ function addData() {
     session_start();
     $_SESSION['demo'] = 'success';
     createUser($conn, $id, $email, $password, $firstName, $middleName, $lastName, $phone, $gender, $course, $yearLevel, $role);
+    header("location: ../dashboard.php?add=success");
 }

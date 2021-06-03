@@ -5,7 +5,7 @@ if (isset($_SESSION["id"])) {
     if ($_SESSION["role"] === "student") {
         header('location: home.php');
     } else {
-        header('location: admin/');
+        header('location: admin/dashboard.php');
     }
 }
 ?>
