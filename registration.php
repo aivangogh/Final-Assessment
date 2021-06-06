@@ -45,16 +45,6 @@ if (isset($_SESSION["id"])) {
 
             <form id="registration-form" method="POST" action="includes/registration.php" novalidate>
                 <div class="form-left-column">
-                    <div class="input-container">
-                        <label class="input-header" for="student-id"><span class="role-id">Student</span> ID</label>
-                        <input class="input" id="id" type="text" name="id" placeholder="Student ID *" pattern="[0-9]{10}" title="ID should only contain numbers and length of 10" required>
-                    </div>
-
-                    <div class="input-container">
-                        <label class="input-header" for="email">University Email
-                            (@<span class="role-email">student</span>.buksu.edu.ph)</label>
-                        <input class="input" id="email" type="email" name="email" placeholder="University Email" readonly="readonly" pattern="^[A-Za-z0-9]+@student.buksu.edu.ph{0,}" required>
-                    </div>
 
                     <div class="input-container">
                         <label class="input-header" for="first-name">First Name</label>
@@ -69,6 +59,21 @@ if (isset($_SESSION["id"])) {
                     <div class="input-container">
                         <label class="input-header" for="last-name">Last Name</label>
                         <input class="input" id="last-name" type="text" name="last-name" placeholder="LAST NAME *" pattern="[A-Za-z]{1,15}" title="Name should only contain letters. e.g Doe" required>
+                    </div>
+
+                    <div class="input-container">
+                        <label class="input-header" for="phone">Phone</label>
+                        <input class="input" id="phone" type="text" name="phone" placeholder="Phone" pattern="^(09|\+639)\d{9}$" title="Format must be like this. 09xxxxxxxxx">
+                    </div>
+
+                    <div class="password-container">
+                        <label class="input-header" for="password">Password</label>
+                        <div class="password-field">
+                            <input id="password" type="password" name="password" placeholder="Password *" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" required>
+                            <button class="password-button">
+                                <img class="password-icon" src="assets/images/eye-slash-regular.svg" alt="hide-password">
+                            </button>
+                        </div>
                     </div>
 
                     <div class="radio-container">
@@ -88,8 +93,14 @@ if (isset($_SESSION["id"])) {
 
                 <div class="form-right-column">
                     <div class="input-container">
-                        <label class="input-header" for="phone">Phone</label>
-                        <input class="input" id="phone" type="text" name="phone" placeholder="Phone" pattern="^(09|\+639)\d{9}$" title="Format must be like this. 09xxxxxxxxx">
+                        <label class="input-header" for="student-id"><span class="role-id">Student</span> ID</label>
+                        <input class="input" id="id" type="text" name="id" placeholder="Student ID *" pattern="[0-9]{10}" title="ID should only contain numbers and length of 10" required>
+                    </div>
+
+                    <div class="input-container">
+                        <label class="input-header" for="email">University Email
+                            (@<span class="role-email">student</span>.buksu.edu.ph)</label>
+                        <input class="input" id="email" type="email" name="email" placeholder="University Email" readonly="readonly" pattern="^[A-Za-z0-9]+@student.buksu.edu.ph{0,}" required>
                     </div>
 
                     <div class="input-container">
@@ -114,15 +125,6 @@ if (isset($_SESSION["id"])) {
                         </select>
                     </div>
 
-                    <div class="password-container">
-                        <label class="input-header" for="password">Password</label>
-                        <div class="password-field">
-                            <input id="password" type="password" name="password" placeholder="Password *" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" required>
-                            <button class="password-button">
-                                <img class="password-icon" src="assets/images/eye-slash-regular.svg" alt="hide-password">
-                            </button>
-                        </div>
-                    </div>
 
                     <div class="register-container">
                         <div class="register-as-container">

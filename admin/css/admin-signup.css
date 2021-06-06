@@ -238,10 +238,6 @@ select:focus {
 
 .register-container {
   display: grid;
-  grid-template-columns: repeat(2, 2fr);
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 20px;
 }
 
 .register-as-container {
