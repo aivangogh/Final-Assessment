@@ -32,6 +32,10 @@ select:focus {
   border: 2px var(--primary-color) solid;
 }
 
+button {
+  cursor: pointer;
+}
+
 .card {
   background-color: #fff;
   border-radius: var(--radius);

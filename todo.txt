@@ -22,12 +22,12 @@
 
 // Error handling
     *--user doesn't exists
-    * Home page errors - returning null
 
 
 ********* FIXED *********
 
 // Register success message - oversize bg
+    *--Home page errors - returning null
 
 
 ********** CHANGES **********

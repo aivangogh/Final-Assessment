@@ -6,8 +6,11 @@ if (isset($_SESSION["id"])) {
 
             if ($_SESSION['mode'] === 'edit') {
                 $_SESSION['edit'] = 'edit';
+                echo "edit mode";
+                // echo $_POST['id'];
                 updateData();
                 unset($_SESSION["mode"]);
+                // header("location: ../dashboard.php?update=success");
             } else {
                 $_SESSION['add'] = 'add';
                 addData();
@@ -26,23 +29,24 @@ if (isset($_SESSION["id"])) {
 }
 
 function updateData() {
-    if (isset($_POST['edit-btn'])) {
-        require_once "connect-db.php";
-        // require_once "includes/functions.php";
-        $id = $_POST["id"];
-        $email = $_POST["email"];
-        $password = $_POST["password"];
-        $firstName = $_POST["first-name"];
-        $middleName = $_POST["middle-name"];
-        $lastName = $_POST["last-name"];
-        $phone = $_POST["phone"];
-        $gender = $_POST["gender"];
-        $course = $_POST["course"];
-        $yearLevel = $_POST["year-level"];
-        $role = $_POST["role"];
+    $id = trim($_POST["id"]);
+    $email = trim($_POST["email"]);
+    $password = trim($_POST["password"]);
+    $firstName = trim($_POST["first-name"]);
+    $middleName = trim($_POST["middle-name"]);
+    $lastName = trim($_POST["last-name"]);
+    $phone = trim($_POST["phone"]);
+    $gender = trim($_POST["gender"]);
+    $course = trim($_POST["course"]);
+    $yearLevel = trim($_POST["year-level"]);
+    $role = trim($_POST["role"]);
 
-        updateUser($conn, $id, $email, $password, $firstName, $middleName, $lastName, $phone, $gender, $course, $yearLevel, $role);
-    }
+    require_once "connect-db.php";
+    require_once "functions.php";
+    require_once "error-handling.php";
+    var_dump($id, $email, $firstName);
+
+    updateUser($conn, $id, $email, $password, $firstName, $middleName, $lastName, $phone, $gender, $course, $yearLevel, $role);
 }
 
 function cancelAction() {
@@ -52,17 +56,17 @@ function cancelAction() {
 }
 
 function addData() {
-    $id = $_POST["id"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-    $firstName = $_POST["first-name"];
-    $middleName = $_POST["middle-name"];
-    $lastName = $_POST["last-name"];
-    $phone = $_POST["phone"];
-    $gender = $_POST["gender"];
-    $course = $_POST["course"];
-    $yearLevel = $_POST["year-level"];
-    $role = $_POST["role"];
+    $id = trim($_POST["id"]);
+    $email = trim($_POST["email"]);
+    $password = trim($_POST["password"]);
+    $firstName = trim($_POST["first-name"]);
+    $middleName = trim($_POST["middle-name"]);
+    $lastName = trim($_POST["last-name"]);
+    $phone = trim($_POST["phone"]);
+    $gender = trim($_POST["gender"]);
+    $course = trim($_POST["course"]);
+    $yearLevel = trim($_POST["year-level"]);
+    $role = trim($_POST["role"]);
 
     require_once "connect-db.php";
     require_once "functions.php";
@@ -87,6 +91,6 @@ function addData() {
     }
     session_start();
     $_SESSION['demo'] = 'success';
-    createUser($conn, $id, $email, $password, $firstName, $middleName, $lastName, $phone, $gender, $course, $yearLevel, $role);
+    createUser($id, $email, $password, $firstName, $middleName, $lastName, $phone, $gender, $course, $yearLevel, $role);
     header("location: ../dashboard.php?add=success");
 }

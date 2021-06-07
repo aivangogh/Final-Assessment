@@ -1,9 +1,3 @@
-import User from './user.js';
-import {
-  COLLEGES as collegeArray,
-  YEAR_LEVEL as yearLevelArray,
-} from './colleges-courses.js';
-
 const id = document.getElementById('id');
 const email = document.getElementById('university-email');
 const password = document.querySelectorAll('.password');
@@ -20,11 +14,6 @@ const yearLevel = document.getElementById('year-level');
 
 const emailLabel = document.querySelector('.email .email-label');
 const updateProfileButton = document.getElementById('update-profile-button');
-
-const user = new User();
-
-// updateCardProfileInfo();
-// updateProfileInfo();
 
 changeAvatar();
 disableRestrictedInput();
@@ -128,8 +117,8 @@ updateProfileButton.addEventListener('click', (e) => {
 const passwordIcon = document.querySelectorAll('.password-icon');
 const passwordButton = document.querySelectorAll('.password-button');
 
-passwordButton.forEach((button) => {
-  button.addEventListener('click', (e) => {
+passwordButton.forEach((btn) => {
+  btn.addEventListener('click', (e) => {
     e.preventDefault();
     if (password.type == 'password') {
       password.type = 'text';

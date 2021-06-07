@@ -10,7 +10,6 @@ const passwordElement = document.querySelector('.password');
 const talbleRow = document.querySelectorAll('.table-row');
 const talbleData = document.querySelector('.table-data');
 
-const idData = document.querySelector('[data-id]').innerText;
 const emailData = document.querySelector('[data-email]').innerText;
 const passwordData = document.querySelector('[data-password]').innerText;
 const firstNameData = document.querySelector('[data-first-name]').innerText;
@@ -37,7 +36,10 @@ const rolePrompt = document.querySelector('.prompt-role');
 // Event Listener
 cancelBtn.addEventListener('click', cancelAction);
 deleteBtn.forEach((btn) => {
-  btn.addEventListener('click', deleteAction);
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    deleteAction();
+  });
   showRowDetails();
 });
 
@@ -50,7 +52,7 @@ function cancelAction() {
 }
 
 function showRowDetails() {
-  idPrompt.innerText = idData;
+  idPrompt.innerText = document.querySelector('#delete-id').value;
   emailPrompt.innerText = emailData;
   passwordPrompt.innerText = passwordData;
   firstNamePrompt.innerText = firstNameData;

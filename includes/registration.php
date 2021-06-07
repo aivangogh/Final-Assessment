@@ -2,17 +2,17 @@
 
 if (isset($_POST["register"])) {
 
-    $id = $_POST["id"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-    $firstName = $_POST["first-name"];
-    $middleName = $_POST["middle-name"];
-    $lastName = $_POST["last-name"];
-    $phone = $_POST["phone"];
-    $gender = $_POST["gender"];
-    $course = $_POST["course"];
-    $yearLevel = $_POST["year-level"];
-    $role = $_POST["role"];
+    $id = trim($_POST["id"]);
+    $email = trim($_POST["email"]);
+    $password = trim($_POST["password"]);
+    $firstName = trim($_POST["first-name"]);
+    $middleName = trim($_POST["middle-name"]);
+    $lastName = trim($_POST["last-name"]);
+    $phone = trim($_POST["phone"]);
+    $gender = trim($_POST["gender"]);
+    $course = trim($_POST["course"]);
+    $yearLevel = trim($_POST["year-level"]);
+    $role = trim($_POST["role"]);
 
     require_once "connect-db.php";
     require_once "functions.php";
