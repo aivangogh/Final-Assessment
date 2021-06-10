@@ -87,16 +87,45 @@ function displaySignupError($signupResponse) {
     }
 }
 
-function displayDashboardResponse($dashboardResponse) {
-    if ($dashboardResponse == "success") {
-        echo "<div id='dashboard-success'><p class='success-message'>Query added successfully!</p></div>";
+// DASHBOARD QUERY RESPONSE
+function displayDeleteResponse($delete) {
+    if ($delete == "success") {
+        echo "<div id='dashboard-success'><p class='delete-success'>Row deleted successfully!</p></div>";
     }
 
-    if ($dashboardResponse == "stmtfail") {
+    if ($delete == "fail") {
+        echo "<div id='login-error'><p class='delete-fail'>Deletion failed.</p></div>";
+    }
+
+    if ($delete == "stmtfail") {
         echo "<div id='login-error'><p class='error-message'>Something went wrong, try again!</p></div>";
     }
+}
 
-    if ($dashboardResponse == "fail") {
-        echo "<div id='login-error'><p class='error-message'>Login failed, Please try again.</p></div>";
+function displayEditResponse($edit) {
+    if ($edit == "success") {
+        echo "<div id='dashboard-success'><p class='delete-success'>Row Edited successfully!</p></div>";
+    }
+
+    if ($edit == "fail") {
+        echo "<div id='login-error'><p class='delete-fail'>Fail to edit profile.</p></div>";
+    }
+
+    if ($edit == "stmtfail") {
+        echo "<div id='login-error'><p class='error-message'>Something went wrong, try again!</p></div>";
+    }
+}
+
+function displayAddResponse($add) {
+    if ($add == "success") {
+        echo "<div id='dashboard-success'><p class='delete-success'>User added successfully!</p></div>";
+    }
+
+    if ($add == "fail") {
+        echo "<div id='login-error'><p class='delete-fail'>User add failed.</p></div>";
+    }
+
+    if ($add == "stmtfail") {
+        echo "<div id='login-error'><p class='error-message'>Something went wrong, try again!</p></div>";
     }
 }

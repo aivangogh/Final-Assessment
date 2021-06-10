@@ -28,6 +28,12 @@ if (isset($_SESSION["id"])) {
     header("location: ../index.php");
 }
 
+function cancelAction() {
+    unset($_SESSION["mode"]);
+    $_SESSION['cancel'] = 'cancel';
+    header('location: ../dashboard.php');
+}
+
 function updateData() {
     $id = trim($_POST["id"]);
     $email = trim($_POST["email"]);
@@ -47,12 +53,7 @@ function updateData() {
     var_dump($id, $email, $firstName);
 
     updateUser($conn, $id, $email, $password, $firstName, $middleName, $lastName, $phone, $gender, $course, $yearLevel, $role);
-}
-
-function cancelAction() {
-    unset($_SESSION["mode"]);
-    $_SESSION['cancel'] = 'cancel';
-    header('location: ../dashboard.php');
+    header("location: ../dashboard.php?update=success");
 }
 
 function addData() {
@@ -91,6 +92,17 @@ function addData() {
     }
     session_start();
     $_SESSION['demo'] = 'success';
+    createUser($conn, $id, $email, $password, $firstName, $middleName, $lastName, $phone, $gender, $course, $yearLevel, $role);
+    header("location: ../dashboard.php?add=success");
+}
+
+function deleteData() {
+    $id = trim($_POST["id"]);
+
+    require_once "connect-db.php";
+    require_once "functions.php";
+    require_once "error-handling.php";
+
     createUser($id, $email, $password, $firstName, $middleName, $lastName, $phone, $gender, $course, $yearLevel, $role);
     header("location: ../dashboard.php?add=success");
 }

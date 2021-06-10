@@ -48,22 +48,65 @@ function getUserData($conn, $id) {
     }
 }
 
-function createUser($id, $email, $password, $firstName, $middleName, $lastName, $phone, $gender, $course, $yearLevel, $role) {
-    require_once "connect-db.php";
+function createUser($conn, $id, $email, $password, $firstName, $middleName, $lastName, $phone, $gender, $courseId, $yearLevel, $role) {
     $sql = "INSERT INTO users (id, email, password, first_name, middle_name, last_name, phone, gender, course_id, year_level, role) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
 
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../dashboard.php?sign=stmtfail");
+        header("location: ../dashboard.php?add=stmtfail");
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "sssssssssss", $id, $email, $password, $firstName, $middleName, $lastName, $phone, $gender, $course, $yearLevel, $role);
+    mysqli_stmt_bind_param($stmt, "sssssssssss", $id, $email, $password, $firstName, $middleName, $lastName, $phone, $gender, $courseId, $yearLevel, $role);
     mysqli_stmt_execute($stmt);
+
+    if (mysqli_stmt_get_result($stmt)) {
+        header("location: ../dashboard.php?add=success");
+    } else {
+        header("location: ../dashboard.php?add=fail");
+    }
+
     mysqli_stmt_close($stmt);
 }
 
 function updateUser($conn, $id, $email, $password, $firstName, $middleName, $lastName, $phone, $gender, $courseId, $yearLevel, $role) {
-    $sql = "UPDATE users SET email = '" . $email . "', password = '" . $password . "', first_name = '" . $firstName . "', middle_name = '" . $middleName . "', last_name = '" . $lastName . "', phone = '" . $phone . "', gender = '" . $gender . "', course_id = '" . $courseId . "', year_level = '" . $yearLevel . "', role = '" . $role . "' WHERE id = '" . $id . "'";
-    mysqli_query($conn, $sql);
+    $sql = "UPDATE users SET email = ?, password = ?, first_name = ?, middle_name = ?, last_name = ?, phone = ?, gender = ?, course_id = ?, year_level = ?, role = ? WHERE id = ?";
+    $stmt = mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../dashboard.php?edit=stmtfail");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "sssssssssss", $email, $password, $firstName, $middleName, $lastName, $phone, $gender, $courseId, $yearLevel, $role, $id);
+    mysqli_stmt_execute($stmt);
+
+    if (mysqli_stmt_get_result($stmt)) {
+        header("location: ../dashboard.php?edit=success");
+    } else {
+        header("location: ../dashboard.php?edit=fail");
+    }
+
+    mysqli_stmt_close($stmt);
+}
+
+function deleteUser($conn, $id) {
+    $sql = "DELETE FROM users WHERE id = ?;";
+    $stmt = mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../dashboard.php?add=stmtfail");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $id);
+    mysqli_stmt_execute($stmt);
+
+    if (mysqli_stmt_get_result($stmt)) {
+        header("location: ../dashboard.php?delete=success");
+    } else {
+        header("location: ../dashboard.php?delete=fail");
+    }
+
+    mysqli_stmt_close($stmt);
 }

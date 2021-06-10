@@ -3,9 +3,10 @@
         <img src="../assets/images/Logo_of_Bukidnon_State_University.png" alt="buksu-logo">
         <span>Admin Dashboard</span>
         <?php
-        echo '<pre>';
-        var_dump($_SESSION);
-        echo '</pre>';
+        // FOR DEBUGGING ONLY
+        // echo '<pre>';
+        // var_dump($_SESSION);
+        // echo '</pre>';
         ?>
     </div>
     <button onclick="location.href='../includes/logout.php';" class="logout-btn" type="button">Logout</button>

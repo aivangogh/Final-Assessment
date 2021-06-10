@@ -37,8 +37,14 @@ if (isset($_SESSION["id"])) {
             <div class="query-container">
                 <div class="query-response-container">
                     <?php
-                    include "includes/error-handling.php";
-                    displayDashboardResponse("add");
+                    require "includes/error-handling.php";
+                    if (isset($_GET["delete"])) {
+                        displayDeleteResponse($_GET["delete"]);
+                    } else if (isset($_GET["add"])) {
+                        displayAddResponse($_GET["add"]);
+                    } else if (isset($_GET["edit"])) {
+                        displayEditResponse($_GET["edit"]);
+                    }
                     ?>
                 </div>
 
@@ -67,7 +73,7 @@ if (isset($_SESSION["id"])) {
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_array($result)) {
                     ?>
-                            <tr class='table-row'>
+                            <tr class='table-rows'>
                                 <td data-id><?php echo $row['id']; ?></td>
                                 <td data-email><?php echo $row['email']; ?></td>
                                 <td data-password><?php echo $row['password']; ?></td>
@@ -85,7 +91,6 @@ if (isset($_SESSION["id"])) {
                                             <input type="hidden" name="edit-id" value="<?php echo $row['id']; ?>">
                                             <button type="sumbit" name="edit-btn" class="edit-btn action-btn"><img class="edit-icon" src="../assets/icons/edit-solid.svg"></button>
                                         </form>
-                                        <input type="hidden" id="delete-id" name="delete-id" value="<?php echo $row['id']; ?>">
                                         <button type="sumbit" class="delete-btn action-btn"><img class="delete-icon" src="../assets/icons/trash-alt-regular.svg"></button>
                                     </div>
                                 </td>
@@ -96,7 +101,6 @@ if (isset($_SESSION["id"])) {
                         echo "No records found.";
                     }
                     ?>
-
                 </table>
             </div>
             <div class="add-action-container">
@@ -122,6 +126,7 @@ if (isset($_SESSION["id"])) {
             </div>
             <div class="delete-actions action-btn">
                 <form action="includes/admin.php" method="POST">
+                    <input type="hidden" id="delete-id" name="delete-id">
                     <button type="submit" class="action-delete-btn" name="delete-data">Delete</button>
                 </form>
                 <button class="action-cancel-btn">Cancel</button>

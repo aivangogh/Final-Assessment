@@ -40,7 +40,7 @@ if (isset($_SESSION["id"])) {
             <div class="error-container">
                 <?php
                 require "includes/error-handling.php";
-                // if (isset($_SESSION["role"])) displaySignupError($_GET["signup"]);
+                if (isset($_GET["signup"])) displaySignupError($_GET["signup"]);
                 ?>
             </div>
 

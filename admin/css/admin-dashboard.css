@@ -127,6 +127,12 @@ button {
   font-size: 1.3em;
 }
 
+.delete-success,
+.delete-fail {
+  font-size: 2em;
+  letter-spacing: 1px;
+}
+
 .table-container {
   height: 100%;
   width: 100%;
