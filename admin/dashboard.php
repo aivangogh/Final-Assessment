@@ -49,7 +49,7 @@ if (isset($_SESSION["id"])) {
                 </div>
 
             </div>
-            <div class="table-container">
+            <div class="table-container card">
                 <table class="table">
                     <thead>
                         <tr>
@@ -85,13 +85,13 @@ if (isset($_SESSION["id"])) {
                                 <td data-course-id><?php echo $row['course_id']; ?></td>
                                 <td data-year-level><?php echo $row['year_level']; ?></td>
                                 <td data-role><?php echo $row['role']; ?></td>
-                                <td>
+                                <td class="action-container">
                                     <div class='actions'>
                                         <form action="signup.php" method="POST">
                                             <input type="hidden" name="edit-id" value="<?php echo $row['id']; ?>">
                                             <button type="sumbit" name="edit-btn" class="edit-btn action-btn"><img class="edit-icon" src="../assets/icons/edit-solid.svg"></button>
                                         </form>
-                                        <button type="sumbit" class="delete-btn action-btn"><img class="delete-icon" src="../assets/icons/trash-alt-regular.svg"></button>
+                                        <button class="delete-btn action-btn"><img class="delete-icon" src="../assets/icons/trash-alt-regular.svg"></button>
                                     </div>
                                 </td>
                             </tr>
@@ -102,10 +102,11 @@ if (isset($_SESSION["id"])) {
                     }
                     ?>
                 </table>
+                <div class="add-action-container">
+                    <button onclick="location.href='signup.php';" class="add-btn action-btn"><img class="add-icon" src="../assets/icons/plus-solid.svg"></button>
+                </div>
             </div>
-            <div class="add-action-container">
-                <button onclick="location.href='signup.php';" class="add-btn action-btn"><img class="add-icon" src="../assets/icons/plus-solid.svg"></button>
-            </div>
+
         </div>
     </div>
     <div class="modal">
@@ -127,7 +128,7 @@ if (isset($_SESSION["id"])) {
             <div class="delete-actions action-btn">
                 <form action="includes/admin.php" method="POST">
                     <input type="hidden" id="delete-id" name="delete-id">
-                    <button type="submit" class="action-delete-btn" name="delete-data">Delete</button>
+                    <button type="submit" class="action-delete-btn" name="delete-data" title="Delete">Delete</button>
                 </form>
                 <button class="action-cancel-btn">Cancel</button>
             </div>

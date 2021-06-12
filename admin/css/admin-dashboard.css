@@ -4,6 +4,24 @@
   src: url('../font/Montserrat-Regular.ttf');
 }
 
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: 400;
+  src: url('../assets/font/Montserrat-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: 500;
+  src: url('../assets/font/Montserrat-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: bold;
+  src: url('../assets/font/Montserrat-Bold.ttf');
+}
+
 body {
   font-family: 'Helvetica', sans-serif;
   background-color: #f4f3ef;
@@ -112,9 +130,10 @@ button {
 
 .right-column {
   display: grid;
-  grid-template-rows: 0.5fr 5fr 0.3fr;
-  padding: 3rem;
+  grid-template-rows: 0.5fr 5fr;
+  padding: 2rem;
   height: 100%;
+  font-family: 'Montserrat';
 }
 
 .query-container {
@@ -134,14 +153,41 @@ button {
 }
 
 .table-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   height: 100%;
   width: 100%;
   overflow: auto;
 }
 
-.table-container table {
-  table-layout: auto;
+table {
+  border-collapse: collapse;
   width: 100%;
+  padding: 20px;
+}
+
+table thead tr {
+  background-color: var(--primary-color);
+  color: #fff;
+  font-weight: 500;
+  text-align: center;
+  height: 3.5rem;
+  letter-spacing: 1px;
+}
+
+table th,
+table td {
+  padding: 12px 15px;
+}
+
+table tbody tr {
+  font-weight: 500;
+  border-bottom: 1px solid #ddd;
+}
+
+table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
 }
 
 td {
@@ -179,6 +225,7 @@ td {
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
+  padding: 20px;
 }
 
 .add-btn {
@@ -188,7 +235,7 @@ td {
   height: 4em;
   width: 4em;
   border-radius: 50%;
-  border: none;
+  border: 1px solid #0358b3;
   background-color: var(--primary-color);
 }
 
@@ -227,10 +274,12 @@ td {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 30rem;
+  width: 35rem;
   gap: 30px;
   padding: 30px;
   z-index: 10;
+  font-family: 'Montserrat';
+  font-weight: 500;
 }
 
 .prompt-msg {

@@ -106,6 +106,7 @@ if (isset($_SESSION["id"])) {
 
                         <div class="input-container">
                             <label class="input-header" for="college">College</label>
+                            <input type="hidden" class="edit-college" value="<?php echo $row['college_id']; ?>">
                             <select id="college" name="college" required>
                                 <option value="" disabled selected hidden>SELECT COLLEGE *</option>
                             </select>
@@ -113,6 +114,7 @@ if (isset($_SESSION["id"])) {
 
                         <div class="input-container">
                             <label class="input-header" for="course">Course</label>
+                            <input type="hidden" class="edit-course" value="<?php echo $row['course_id']; ?>">
                             <select id="course" name="course" required>
                                 <option value="" disabled selected hidden>COURSE *</option>
                                 <option value="" disabled>Select college first</option>
@@ -121,6 +123,7 @@ if (isset($_SESSION["id"])) {
 
                         <div class="input-container">
                             <label class="input-header" for="year">Year</label>
+                            <input type="hidden" class="edit-yearLevel" value="<?php echo $row['year_level']; ?>">
                             <select id="year-level" name="year-level" required>
                                 <option value="" disabled selected hidden>YEAR LEVEL *</option>
                             </select>
